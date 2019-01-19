@@ -25,12 +25,12 @@
 				$_query  = "UPDATE news SET picture='" . $_picture . "'";
 				$_query .= " WHERE id=" . $ID . " LIMIT 1";
 				$_result = @mysqli_query($MySQL, $_query);
-				$_SESSION['message'] .= '<p>You successfully added picture.</p>';
+				$_SESSION['message'] .= '<p>Uspješno ste dodali sliku.</p>';
 			}
         }
 		
 		
-		$_SESSION['message'] .= '<p>You successfully added news!</p>';
+		$_SESSION['message'] .= '<p>Uspješno ste dodali članak!</p>';
 		
 		# Redirect
 		header("Location: index.php?menu=7&action=2");
@@ -58,11 +58,11 @@
 				$_query  = "UPDATE news SET picture='" . $_picture . "'";
 				$_query .= " WHERE id=" . (int)$_POST['edit'] . " LIMIT 1";
 				$_result = @mysqli_query($MySQL, $_query);
-				$_SESSION['message'] .= '<p>You successfully added picture.</p>';
+				$_SESSION['message'] .= '<p>Uspješno ste dodali sliku.</p>';
 			}
         }
 		
-		$_SESSION['message'] = '<p>You successfully changed news!</p>';
+		$_SESSION['message'] = '<p>Uspješno ste ažurirali članak!</p>';
 		
 		# Redirect
 		header("Location: index.php?menu=7&action=2");
@@ -85,7 +85,7 @@
 		$query .= " LIMIT 1";
 		$result = @mysqli_query($MySQL, $query);
 
-		$_SESSION['message'] = '<p>You successfully deleted news!</p>';
+		$_SESSION['message'] = '<p>Uspješno ste obrisali članak!</p>';
 		
 		# Redirect
 		header("Location: index.php?menu=7&action=2");
@@ -174,7 +174,7 @@
 	}
 	else {
 		print '
-		<h2>News</h2>
+		<h2>Novosti</h2>
 		<div id="news">
 			<table>
 				<thead>
@@ -218,7 +218,7 @@
 			print '
 				</tbody>
 			</table>
-			<a href="index.php?menu=' . $menu . '&amp;action=' . $action . '&amp;add=true" class="AddLink">Add news</a>
+			<a href="index.php?menu=' . $menu . '&amp;action=' . $action . '&amp;add=true" class="AddLink">Dodaj članak</a>
 		</div>';
 	}
 	

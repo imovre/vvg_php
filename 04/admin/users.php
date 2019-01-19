@@ -9,7 +9,7 @@
 		# Close MySQL connection
 		@mysqli_close($MySQL);
 		
-		$_SESSION['message'] = '<p>You successfully changed user profile!</p>';
+		$_SESSION['message'] = '<p>Uspješno ste izmijenili korisnički profil!</p>';
 		
 		# Redirect
 		header("Location: index.php?menu=7&action=1");
@@ -24,7 +24,7 @@
 		$query .= " LIMIT 1";
 		$result = @mysqli_query($MySQL, $query);
 
-		$_SESSION['message'] = '<p>You successfully deleted user profile!</p>';
+		$_SESSION['message'] = '<p>Uspješno ste obrisali korisnički profil!</p>';
 		
 		# Redirect
 		header("Location: index.php?menu=7&action=1");
@@ -39,18 +39,18 @@
 		$result = @mysqli_query($MySQL, $query);
 		$row = @mysqli_fetch_array($result);
 		print '
-		<h2>User profile</h2>
-		<p><b>First name:</b> ' . $row['firstname'] . '</p>
-		<p><b>Last name:</b> ' . $row['lastname'] . '</p>
-		<p><b>Username:</b> ' . $row['username'] . '</p>';
+		<h2>Korisnički profil</h2>
+		<p><b>Ime:</b> ' . $row['firstname'] . '</p>
+		<p><b>Prezime:</b> ' . $row['lastname'] . '</p>
+		<p><b>Korisničko ime:</b> ' . $row['username'] . '</p>';
 		$_query  = "SELECT * FROM countries";
 		$_query .= " WHERE country_code='" . $row['country'] . "'";
 		$_result = @mysqli_query($MySQL, $_query);
 		$_row = @mysqli_fetch_array($_result);
 		print '
-		<p><b>Country:</b> ' .$_row['country_name'] . '</p>
-		<p><b>Date:</b> ' . pickerDateToMysql($row['date']) . '</p>
-		<p><a href="index.php?menu='.$menu.'&amp;action='.$action.'">Back</a></p>';
+		<p><b>Država:</b> ' .$_row['country_name'] . '</p>
+		<p><b>Datum:</b> ' . pickerDateToMysql($row['date']) . '</p>
+		<p><a href="index.php?menu='.$menu.'&amp;action='.$action.'">Natrag</a></p>';
 	}
 	#Edit user profile
 	else if (isset($_GET['edit']) && $_GET['edit'] != '') {
@@ -61,24 +61,24 @@
 		$checked_archive = false;
 		
 		print '
-		<h2>Edit user profile</h2>
+		<h2>Uređivanje korisničkog profila</h2>
 		<form action="" id="registration_form" name="registration_form" method="POST">
 			<input type="hidden" id="_action_" name="_action_" value="TRUE">
 			<input type="hidden" id="edit" name="edit" value="' . $_GET['edit'] . '">
 			
-			<label for="fname">First Name *</label>
-			<input type="text" id="fname" name="firstname" value="' . $row['firstname'] . '" placeholder="Your name.." required>
+			<label for="fname">Ime *</label>
+			<input type="text" id="fname" name="firstname" value="' . $row['firstname'] . '" placeholder="Vaše ime..." required>
 
-			<label for="lname">Last Name *</label>
-			<input type="text" id="lname" name="lastname" value="' . $row['lastname'] . '" placeholder="Your last natme.." required>
+			<label for="lname">Prezime *</label>
+			<input type="text" id="lname" name="lastname" value="' . $row['lastname'] . '" placeholder="Vaše prezime..." required>
 				
-			<label for="email">Your E-mail *</label>
-			<input type="email" id="email" name="email"  value="' . $row['email'] . '" placeholder="Your e-mail.." required>
+			<label for="email">Vaša e-mail adresa *</label>
+			<input type="email" id="email" name="email"  value="' . $row['email'] . '" placeholder="Vaša e-mail adresa..." required>
 			
-			<label for="username">Username *<small>(Username must have min 5 and max 10 char)</small></label>
-			<input type="text" id="username" name="username" value="' . $row['username'] . '" pattern=".{5,10}" placeholder="Username.." required><br>
+			<label for="username">Korisničko ime *<small>(Korisničko ime mora biti duljine od 5 do 10 zmakova)</small></label>
+			<input type="text" id="username" name="username" value="' . $row['username'] . '" pattern=".{5,10}" placeholder="Korisničko ime..." required><br>
 			
-			<label for="country">Country</label>
+			<label for="country">Država</label>
 			<select name="country" id="country">
 				<option value="">molimo odaberite</option>';
 				#Select all countries from database webprog, table countries
@@ -92,19 +92,19 @@
 			print '
 			</select>
 			
-			<label for="archive">Archive:</label><br />
+			<label for="archive">Arhiva:</label><br />
             <input type="radio" name="archive" value="Y"'; if($row['archive'] == 'Y') { echo ' checked="checked"'; $checked_archive = true; } echo ' /> YES &nbsp;&nbsp;
 			<input type="radio" name="archive" value="N"'; if($checked_archive == false) { echo ' checked="checked"'; } echo ' /> NO
 			
 			<hr>
 			
-			<input type="submit" value="Submit">
+			<input type="submit" value="Potvrdi">
 		</form>
-		<p><a href="index.php?menu='.$menu.'&amp;action='.$action.'">Back</a></p>';
+		<p><a href="index.php?menu='.$menu.'&amp;action='.$action.'">Natrag</a></p>';
 	}
 	else {
 		print '
-		<h2>List of users</h2>
+		<h2>Popis korisnika</h2>
 		<div id="users">
 			<table>
 				<thead>
@@ -112,8 +112,8 @@
 						<th width="16"></th>
 						<th width="16"></th>
 						<th width="16"></th>
-						<th>First name</th>
-						<th>Last name</th>
+						<th>Ime</th>
+						<th>Prezime</th>
 						<th>E mail</th>
 						<th>Država</th>
 						<th width="16"></th>

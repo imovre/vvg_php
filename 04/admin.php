@@ -12,7 +12,7 @@
 			if ($action == 1) { include("admin/users.php"); }
 			
 			# Admin News
-			else if ($action == 2) { include("admin/novosti.php"); }
+			else if ($action == 2) { include("admin/news.php"); }
 		print '
 		</div>';
 	}
